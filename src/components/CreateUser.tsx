@@ -10,6 +10,7 @@ export const CreateUser = () => {
     const passwordTwo = useRef<HTMLInputElement>(null)
 
     const submitUser = () => {
+        const userN = username.current?.value;
         const passOne = passwordOne.current?.value;
         const passTwo = passwordTwo.current?.value;
         if(passOne !== passTwo) {
@@ -17,30 +18,38 @@ export const CreateUser = () => {
             setTimeout(()=>setIsPasswordError(false), 2000)
             return
         }
-        const newUser = {
-            username: username.current?.value,
-            password: passOne,
+        if (userN && passOne && passTwo) {
+            const newUser = {
+                username: username.current?.value,
+                password: passOne,
+            }
+            fetch('http://localhost:8080/users/new', {
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify(newUser)
+            })
+            setIsSubmitted(true)
         }
-        fetch('http://localhost:8080/users/new', {
-            method: "POST",
-            headers: {"Content-Type": "application/json"},
-            body: JSON.stringify(newUser)
-        })
-        setIsSubmitted(true)
     }
 
     return(
-        <>
-        <h2>Create a Profile Here</h2>
-        <form onSubmit={(e) => {e.preventDefault()}}>
-            <input ref={username} type="text" placeholder="Choose a Username" required/>
-            <input ref={passwordOne} type="password" placeholder="Enter a Password" required/>
+        <div className="createUser">
+        <div className="createUser__title-container">
+            <h2 className="title-container__title">Technical Interview Helper</h2>
+        </div>
+        <h3>Create a Profile Here</h3>
+        <form className="createUser__form"onSubmit={(e) => {e.preventDefault()}}>
+            <input ref={username} type="text" placeholder="Choose Username" required/>
+            <input ref={passwordOne} type="password" placeholder="Enter Password" required/>
             <p className={isPasswordError ? "errorMessage" : "hidden"}>Your passwords do not match!</p>
-            <input ref={passwordTwo} type="password" placeholder="Confirm your Password" required/>
+            <input ref={passwordTwo} type="password" placeholder="Confirm Password" required/>
             <p className={isPasswordError ? "errorMessage" : "hidden"}>Your passwords do not match!</p>
-            <button onClick={()=> submitUser()}>Create an Account</button>
+            <button className="createUser__btn" onClick={()=> submitUser()}>Create an Account</button>
         </form>
-        <Link to='/login' className={isSubmitted? "errorMessage" : "hidden"}>Your Account is Created! Please Click the Link to go to the Login Page</Link>
-        </>
+        <div className="login__button-bar">
+            <Link to='/'>Home</Link>
+            <Link to='/login' className={isSubmitted? "button-bar__link" : "hidden"}>Your Account is Created! Please Click the Link to go to the Login Page</Link>
+        </div>
+        </div>
     )
 }

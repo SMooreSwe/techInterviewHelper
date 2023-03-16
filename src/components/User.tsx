@@ -34,21 +34,29 @@ export const User = () => {
     }
 
     return(
-        <>
+        <div className="user">
+        <div className="user__title-container">
         <h2>{username}</h2>
-        <section>
+        </div>
+        <div className="user__content">
+        <section className="user__generator">
             <p>{quote}</p>
-            <button onClick={() => quoteGenerator()}>Generate a new quote!</button>
-            <button onClick={() => saveQuote()}>Save this quote!</button>
+            <button className="generator__btn" onClick={() => quoteGenerator()}>Generate a new quote!</button>
+            <button className="generator__btn" onClick={() => saveQuote()}>Save this quote!</button>
         </section>
-        
-        <ul>
-            {quoteList && quoteList.map((quote : string) => {
-                return( <Quote key={crypto.randomUUID()} userId={_id} quote={quote} setter={quoteDeleter}/>)
-            })}
-        </ul>
-        <Link to='/'>Logout</Link>
-        </>
+        <div className="user__quote-container">
+            <h3 className="quote-container__title">Your saved quotes</h3>
+            <ul className="quote-container__list">
+                {quoteList && quoteList.map((quote : string) => {
+                    return( <Quote key={crypto.randomUUID()} userId={_id} quote={quote} setter={quoteDeleter}/>)
+                })}
+            </ul>
+        </div>
+        </div>
+        <div className="user__btn-container">
+            <Link className="btn-container__link" to='/'>Logout</Link>
+        </div>
+        </div>
         
     )
 }

@@ -17,48 +17,54 @@ export const Login = () => {
         if (!username || !password) {
             setIsError(true)
             setTimeout(()=>setIsError(false), 2000)
-        } else {
-            const userSearch = {
-                username: username,
-                password: password,
-            }
-    
-            fetch('http://localhost:8080/users', {
-                method: "POST",
-                headers: {"Content-Type": "application/json"},
-                body: JSON.stringify(userSearch)
-              })
-              .then(response => response.json())
-              .then(response => {
-                if (response.length === 0) {
-                    setIsUser(false)
-                    setWrongLogin(true)
-                    setTimeout(()=>setWrongLogin(false), 5000)
-                } else {
-                    setIsUser(true)
-                    const user = response[0]
-                    navigate(`/login/${user.username}`,
-                        {
-                            state: {user}
-                        }
-                    )
-                }
+            return
+        }
+        const userSearch = {
+            username: username,
+            password: password,
+        }
+        fetch('http://localhost:8080/users', {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(userSearch)
             })
-        } 
+            .then(response => response.json())
+            .then(response => {
+            if (response.length === 0) {
+                setIsUser(false)
+                setWrongLogin(true)
+                setTimeout(()=>setWrongLogin(false), 5000)
+            } else {
+                setIsUser(true)
+                const user = response[0]
+                navigate(`/login/${user.username}`,
+                    {
+                        state: {user}
+                    }
+                )
+            }
+        })
+        
     }
 
     return(
-        <>
-        <form className="login" onSubmit={(e) => {e.preventDefault()}}>
-            <input className="login__usernameInput" ref={userInput} type="text" placeholder="Username"/>
+        <div className="login">
+        <div className="login__title-container">
+            <h2 className="title-container__title">Technical Interview Helper</h2>
+        </div>
+        <h3>Login</h3>
+        <form className="login__form" onSubmit={(e) => {e.preventDefault()}}>
+            <input className="form__input" ref={userInput} type="text" placeholder="Username"/>
             <p className={isError ? "errorMessage" : "hidden"}>Please input a username</p>
-            <input className="login__passwordInput" ref={passInput} type="password" placeholder="Password"/>
+            <input className="form__input" ref={passInput} type="password" placeholder="Password"/>
             <p className={isError ? "errorMessage" : "hidden"}>Please input a password</p>
-            <button className="login__btn" onClick={() => {loginChecker()}}>Login</button>
+            <button className="form__btn" onClick={() => {loginChecker()}}>Login</button>
         </form>
         <p className={ wrongLogin ? "errorMessage" : "hidden" }>Account Not Found - follow the link below to create an account</p>
-        <Link to='/'>Home</Link>
-        <Link to='/createUser'>Create an Account</Link>
-        </>
+        <div className="login__button-bar">
+            <Link to='/'>Home</Link>
+            <Link to='/createUser'>Create an Account</Link>
+        </div>
+        </div>
     )
 }

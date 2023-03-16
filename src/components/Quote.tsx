@@ -1,3 +1,4 @@
+import { useState } from "react"
 
 type QuoteProps = {
     userId: string,
@@ -6,6 +7,8 @@ type QuoteProps = {
 }
 
 export const Quote = ({userId, quote, setter} : QuoteProps) => {
+
+    const [ isSelected, setIsSelected ] = useState<boolean>(false)
 
     const deleteQuote = () => {
         const quoteInput = {
@@ -21,9 +24,9 @@ export const Quote = ({userId, quote, setter} : QuoteProps) => {
     }
 
     return(
-        <li>
-            {quote}
-            <button onClick={() => deleteQuote()}>Delete</button>
+        <li className="quote" onMouseEnter={() => setIsSelected(true)} onMouseLeave={() => setIsSelected(false)}>
+            <div className={isSelected? "quote__text--bold" : "quote__text"} >{quote}</div>
+            <button className={isSelected? "quote__btn" : "hidden"} onClick={() => deleteQuote()}>Delete</button>
         </li>
     )
 }
