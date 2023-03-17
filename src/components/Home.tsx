@@ -12,7 +12,7 @@ export const Home = () => {
 
     return(
     <div className="home">
-    <h1 className="home__title">The Technical Interview Helper!</h1>
+    <h1 className="home__title">The Technical Interview Helper</h1>
     <h3 className="home__subtitle">{`"${subtitle}"`}</h3>
     <div className="home__buttonBar">
         <Link to='/login'>Login</Link>

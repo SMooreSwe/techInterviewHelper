@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Quote } from "./Quote";
 
@@ -14,6 +14,10 @@ export const User = () => {
         .then(response => setQuote(response))
     }
 
+    useEffect(()=> {
+        quoteGenerator()
+    }, [])
+    
     const saveQuote = () => {
         const quoteInput = {
             id: _id,
