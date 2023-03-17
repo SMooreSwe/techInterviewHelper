@@ -52,7 +52,7 @@ export const Login = () => {
         <div className="login__title-container">
             <h2 className="title-container__title">Technical Interview Helper</h2>
         </div>
-        <h3>Login</h3>
+        <h3 className="login__form-title">Login</h3>
         <form className="login__form" onSubmit={(e) => {e.preventDefault()}}>
             <input className="form__input" ref={userInput} type="text" placeholder="Username"/>
             <p className={isError ? "errorMessage" : "hidden"}>Please input a username</p>

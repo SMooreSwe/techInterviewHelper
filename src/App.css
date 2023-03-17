@@ -98,9 +98,14 @@ html {
  padding-bottom: 20px;
 }
 
+.createUser__form-title, .login__form-title { 
+  margin-top: 60px;
+}
+
 .login__form, .createUser__form {
  display: flex;
  align-items: center;
+ padding-top: 20px;
  width: 300px;
  gap: 15px;
  flex-direction: column;

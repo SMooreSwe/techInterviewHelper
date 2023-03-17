@@ -37,7 +37,7 @@ export const CreateUser = () => {
         <div className="createUser__title-container">
             <h2 className="title-container__title">Technical Interview Helper</h2>
         </div>
-        <h3>Create a Profile Here</h3>
+        <h3 className="createUser__form-title">Create a Profile Here</h3>
         <form className="createUser__form"onSubmit={(e) => {e.preventDefault()}}>
             <input ref={username} type="text" placeholder="Choose Username" required/>
             <input ref={passwordOne} type="password" placeholder="Enter Password" required/>

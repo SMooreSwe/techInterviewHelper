@@ -11,6 +11,7 @@ Given the time-limit, there are areas that I would like to improve upon. These a
  - Token Authentication for users.
  - Protecting the user page route and preventing use of the History Object to access it, once it is left.
 - Error handling, in the event of a backend disconnect.
+- Responsive CSS.
 
 
 ## Usage
