@@ -4,6 +4,12 @@ This project was built in a day, as part of a Hack-Day event. It uses React Nati
 
 The project includes a working system for account creation, user login and saving data to user profiles.
 
+## Tech Stack
+This project was built with:
+- React (using Create React App)
+- Express (see backend repo)
+- MongoDB (see backend repo)
+
 ## Areas for Improvement
 
 Given the time-limit, there are areas that I would like to improve upon. These are:
