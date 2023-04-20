@@ -7,6 +7,7 @@ The project includes a working system for account creation, user login and savin
 ## Tech Stack
 This project was built with:
 - React (using Create React App)
+- React Router (and useNavigate)
 - Express (see backend repo)
 - MongoDB (see backend repo)
 
