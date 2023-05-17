@@ -1,6 +1,6 @@
 # Technical Interview Helper
 
-This project was built in a day, as part of a Hack-Day event. It uses React Native and Typescript. The backend is in a separate repository and is running using MongoDB. Quotes are generated with the Techy API.
+This project was built in a day, as part of a Hack-Day event. It uses ReactJS and Typescript. The backend is in a separate repository and is running using MongoDB. Quotes are generated with the Techy API.
 
 The project includes a working system for account creation, user login and saving data to user profiles.
 
